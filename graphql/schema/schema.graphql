@@ -1,6 +1,17 @@
-const { buildSchema } = require("graphql");
+"""
+#TYPES
+"""
+type User {
+  _id: ID!
+  name: String!
+  email: String!
+  password: String!
+  city: String!
+  location: String!
+  tempDogs: [User!]!
+  defDogs: [User!]!
+}
 
-module.exports = buildSchema(`
 type Dog {
   _id: ID!
   name: String!
@@ -13,6 +24,17 @@ type Dog {
   defHome: String
   mainInjury: String
   createdAt: String
+}
+
+"""
+#INPUTS
+"""
+input UserInput {
+  name: String!
+  email: String!
+  password: String!
+  city: String!
+  location: String!
 }
 
 input DogInput {
@@ -28,16 +50,23 @@ input DogInput {
   createdAt: String
 }
 
+"""
+#QUERYS
+"""
 type RootQuery {
   dogs: [Dog!]!
+  users: [User!]!
 }
 
+"""
+#MUTATIONS
+"""
 type RootMutation {
   createDog(dogInput: DogInput!): Dog
+  createUser(userInput: UserInput!): User
 }
 
 schema {
   query: RootQuery
   mutation: RootMutation
 }
-`);

@@ -35,6 +35,11 @@ const dogSchema = new Schema({
   mainInjury: {
     type: String,
   },
+  createdAt: {
+    type: Date,
+    required: true,
+  },
+  createdBy: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 module.exports = mongoose.model("Dog", dogSchema);

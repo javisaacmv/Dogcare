@@ -26,4 +26,29 @@ module.exports = {
       throw err;
     }
   },
+  login: async ({ email, password }) => {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      console.log("el usuario no existe");
+      throw new Error("el usuario no existe");
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      console.log("contraseña incorrecta");
+      throw new Error("contraseña incorrecta");
+    }
+
+    const token = jwt.sign(
+      { userId: user.id, email: user.email },
+      "nerossecretc",
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    return { userId: user.id, token: token, tokenExpiration: 1 };
+  },
 };

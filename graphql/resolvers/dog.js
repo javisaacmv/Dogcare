@@ -8,7 +8,7 @@ module.exports = {
       return {
         ...d._doc,
         _id: d.id,
-        createdAt: d._doc.createdAt.toString(),
+        createdAt: d._doc.createdAt ? d._doc.createdAt.toISOString() : "",
       };
     });
   },

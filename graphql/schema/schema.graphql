@@ -1,6 +1,12 @@
 """
 #TYPES
 """
+type AuthData {
+  userId: ID!
+  token: String!
+  tokenExpiration: Int!
+}
+
 type User {
   _id: ID!
   name: String!
@@ -56,6 +62,7 @@ input DogInput {
 type RootQuery {
   dogs: [Dog!]!
   users: [User!]!
+  login(email: String!, password: String!): AuthData!
 }
 
 """

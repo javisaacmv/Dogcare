@@ -12,7 +12,7 @@ module.exports = {
       };
     });
   },
-  createDog: async (args) => {
+  createDog: async (args, req) => {
     const dog = new Dog({
       ...args.dogInput,
       createdAt: new Date(args.dogInput.createdAt),

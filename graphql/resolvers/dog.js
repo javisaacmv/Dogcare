@@ -3,6 +3,7 @@ const User = require("../../db/models/user");
 
 module.exports = {
   dogs: async () => {
+    console.log("entro");
     const dogs = await Dog.find();
     return dogs.map((d) => {
       return {

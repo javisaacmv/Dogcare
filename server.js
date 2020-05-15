@@ -13,7 +13,7 @@ dbRun();
 
 app.use(bodyParser.json());
 
-app.use(auth);
+//app.use(auth);
 
 app.use(
   "/graphql",
